@@ -21,8 +21,8 @@ steps:
       testType: 'app'
       monitorWhen: 'always'
       failOnIssues: true
-      projectName: 'Azure Pipeline Demo'
+      projectName: Azure Pipeline Demo
       organization: 'Finance Org'
-      additionalArguments: '--all-projects'
+
       
       
