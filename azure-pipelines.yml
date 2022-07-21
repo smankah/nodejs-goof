@@ -22,7 +22,6 @@ steps:
       monitorWhen: 'always'
       failOnIssues: true
       projectName: Azure Pipeline Demo
-      organization: 'Finance Org'
 
       
       
