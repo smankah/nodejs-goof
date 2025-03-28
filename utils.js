@@ -11,7 +11,7 @@ module.exports = {
     var i       = len;
 
     for( ; i-- ; ){
-      str += src.charAt( this.ran_no( 0, src_len - 1 ));
+      str += src.charAt( this.ran_no( 0,   src_len - 1 ));
     }
 
     return str;
