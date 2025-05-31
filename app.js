@@ -82,6 +82,35 @@ if (app.get('env') == 'development') {
 
 var token = 'SECRET_TOKEN_f8ed84e8f41e4146403dd4a6bbcea5e418d23a9';
 console.log('token: ' + token);
+function adminLoginSuccess1(redirectPage, session, username, res) {
+  session.loggedIn = 1
+
+  // Log the login action for audit
+  console.log(`User logged in: ${username}`)
+
+  if (redirectPage) {
+      return res.redirect(redirectPage)
+  } else {
+      return res.redirect('/admin')
+  }
+}
+
+exports.loginHandlerTest = function (req, res, next) {
+  if (validator.isEmail(req.body.username)) {
+    User.find({ username: req.body.username, password: req.body.password }, function (err, users) {
+      if (users.length > 0) {
+        const redirectPage = req.body.redirectPage
+        const session = req.session
+        const username = req.body.username
+        return adminLoginSuccess1(redirectPage, session, username, res)
+      } else {
+        return res.status(401).send()
+      }
+    });
+  } else {
+    return res.status(401).send()
+  }
+};
 
 http.createServer(app).listen(app.get('port'), function () {
   console.log('Express server listening on port ' + app.get('port'));
